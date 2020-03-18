@@ -1,5 +1,5 @@
 
-from simpleCalculator import calculator
+from simpleCalculator import simpleCalculator as calculator
 import pytest
 import unittest
 import csv

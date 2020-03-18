@@ -1,5 +1,5 @@
 
-class calculator:
+class simpleCalculator:
 
     #Addition
     @staticmethod
