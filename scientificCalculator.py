@@ -2,18 +2,18 @@ class scientificCalculator:
 
     #Population Mean
     @staticmethod
-    def populationMean(num1, num2):
-        return 1;
-
-
-
+    def populationMean(data):
+        n= len(data)
+        sum=0
+        for i in range(0,n): sum= sum +data[i]
+        return sum/n ;
 
 
 
 if __name__ == '__main__':
         choice = ""
 
-        while choice != "7":
+        while choice != "16":
             print("Select the operation:")
             print("1. Population Mean")
             print("2. Median")
@@ -33,3 +33,7 @@ if __name__ == '__main__':
             print("16. Quit")
 
             choice = input("Enter Choice: ")
+
+            if choice == "1":
+                data=[1,2,3,4,5,6,7,8,9,11]
+                print( scientificCalculator.populationMean(data));
