@@ -8,7 +8,16 @@ class scientificCalculator:
         for i in range(0,n): sum= sum +data[i]
         return sum/n ;
 
-
+    #Population Standard Deviation
+    @staticmethod
+    def populationStandardDeviation(data):
+        n= len(data);
+        dev=0
+        mean = scientificCalculator.populationMean(data);
+        for i in range(0, n):
+            dev= dev+ (data[i]-mean)**(2)
+        stdev = (dev/n)**(1/2)
+        return stdev
 
 if __name__ == '__main__':
         choice = ""
@@ -37,3 +46,6 @@ if __name__ == '__main__':
             if choice == "1":
                 data=[1,2,3,4,5,6,7,8,9,11]
                 print( scientificCalculator.populationMean(data));
+            elif choice == "4":
+                data=[1,2,3,4,5,6,7,8,9,11]
+                print( scientificCalculator.populationStandardDeviation(data));
