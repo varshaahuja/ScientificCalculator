@@ -1,3 +1,4 @@
+import csv
 class scientificCalculator:
 
     #Population Mean
@@ -19,9 +20,30 @@ class scientificCalculator:
         stdev = (dev/n)**(1/2)
         return stdev
 
+    @staticmethod
+    def populationVariance(data):
+        stdev = scientificCalculator.populationStandardDeviation(data)
+        variance = (stdev)**(2)
+        return (variance)
+
+    @staticmethod
+    def standardizedScore(data, i):
+        stdev = scientificCalculator.populationStandardDeviation(data);
+        mean = scientificCalculator.populationMean(data)
+        standardizedScore = (data[i]-mean)/stdev
+        return standardizedScore
+
+    @staticmethod
+    def sampleMean(data,m):
+        sum=0
+        for i in range(0,m): sum= sum +data[i]
+        return sum/m;
+
+
 if __name__ == '__main__':
         choice = ""
 
+        data = [40.99466095,37.81026989,57.0523356,56.16491889,50.92704795,41.50516032]
         while choice != "16":
             print("Select the operation:")
             print("1. Population Mean")
@@ -44,8 +66,15 @@ if __name__ == '__main__':
             choice = input("Enter Choice: ")
 
             if choice == "1":
-                data=[1,2,3,4,5,6,7,8,9,11]
                 print( scientificCalculator.populationMean(data));
             elif choice == "4":
-                data=[1,2,3,4,5,6,7,8,9,11]
-                print( scientificCalculator.populationStandardDeviation(data));
+                print(scientificCalculator.populationStandardDeviation(data));
+
+            elif choice == "7":
+                print(scientificCalculator.standardizedScore(data,4));
+
+            elif choice == "10":
+                print(scientificCalculator.populationVariance(data));
+
+            elif choice == "13":
+                print(scientificCalculator.sampleMean(data,3));

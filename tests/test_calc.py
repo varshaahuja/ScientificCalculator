@@ -3,6 +3,7 @@ from simpleCalculator import simpleCalculator as calculator
 import pytest
 import unittest
 import csv
+from scientificCalculator import scientificCalculator as scientificCalculator
 
 
 
@@ -102,3 +103,46 @@ class test_PythonSimpleCalc(unittest.TestCase):
             while (i != len(num1)):
                 assert round(calculator.squareRoot(float(num1[i])),8) == round(float(res[i]),8)
                 i = i + 1;
+
+
+    def test_calc_populationMean(self):
+
+        with open('inputScientific.csv') as csvfile:
+            readCSV = csv.reader(csvfile)
+
+            for row in readCSV:
+                scientificCalculator.populationMean(row)
+
+
+
+    def test_calc_populationStandardDeviation(self):
+        with open('inputScientific.csv') as csvfile:
+            readCSV = csv.reader(csvfile)
+
+            for row in readCSV:
+                scientificCalculator.populationStandardDeviation(row)
+
+
+    def test_calc_standardizedScore(self):
+        with open('inputScientific.csv') as csvfile:
+            readCSV = csv.reader(csvfile)
+
+            for row in readCSV:
+                scientificCalculator.standardizedScore(row)
+
+
+    def test_calc_populationVariance(self):
+        with open('inputScientific.csv') as csvfile:
+            readCSV = csv.reader(csvfile)
+
+            for row in readCSV:
+                scientificCalculator.populationVariance(row)
+
+
+
+    def test_calc_samplmean(self):
+        with open('inputScientific.csv') as csvfile:
+            readCSV = csv.reader(csvfile)
+
+            for row in readCSV:
+                scientificCalculator.sampleMean(row)
