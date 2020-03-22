@@ -8,6 +8,7 @@ from scientificCalculator import scientificCalculator as scientificCalculator
 
 
 class test_PythonSimpleCalc(unittest.TestCase):
+
     def test_calc(self):
         assert calculator
 
@@ -107,42 +108,53 @@ class test_PythonSimpleCalc(unittest.TestCase):
 
     def test_calc_populationMean(self):
 
-        with open('inputScientific.csv') as csvfile:
-            readCSV = csv.reader(csvfile)
-
-            for row in readCSV:
-                scientificCalculator.populationMean(row)
-
-
+        input = csv.reader(open("populationMean.csv"))
+        next(input)
+        list_of_floats = []
+        for row in input:
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert  float(scientificCalculator.populationMean((list_of_floats))) == float(row[10])
 
     def test_calc_populationStandardDeviation(self):
-        with open('inputScientific.csv') as csvfile:
-            readCSV = csv.reader(csvfile)
 
-            for row in readCSV:
-                scientificCalculator.populationStandardDeviation(row)
+        input = csv.reader(open("populationStandardDeviation.csv"))
+        next(input)
+        list_of_floats = []
+        for row in input:
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.populationStandardDeviation((list_of_floats))) == float(row[10])
 
 
     def test_calc_standardizedScore(self):
-        with open('inputScientific.csv') as csvfile:
-            readCSV = csv.reader(csvfile)
 
-            for row in readCSV:
-                scientificCalculator.standardizedScore(row)
+        input = csv.reader(open("standardizedScore.csv"))
+        next(input)
+        list_of_floats = []
+        for row in input:
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert  float(scientificCalculator.standardizedScore((list_of_floats), int(row[11]))) == float(row[10])
 
 
     def test_calc_populationVariance(self):
-        with open('inputScientific.csv') as csvfile:
-            readCSV = csv.reader(csvfile)
 
-            for row in readCSV:
-                scientificCalculator.populationVariance(row)
-
+        input = csv.reader(open("populationVariance.csv"))
+        next(input)
+        list_of_floats = []
+        for row in input:
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.populationVariance((list_of_floats))) == float(row[10])
 
 
     def test_calc_samplmean(self):
-        with open('inputScientific.csv') as csvfile:
-            readCSV = csv.reader(csvfile)
 
-            for row in readCSV:
-                scientificCalculator.sampleMean(row)
+        input = csv.reader(open("sampleMean.csv"))
+        next(input)
+        list_of_floats = []
+        for row in input:
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.sampleMean(list_of_floats, int(row[11])))== float(row[10])
