@@ -17,7 +17,7 @@ def stdev(df):
   sample_variance = sum((x - mean) ** 2 for x in df) / (len(df) - 1)
 
   samplestandard_deviation = sample_variance ** (0.5)
-  return round(standard_deviation)
+  return round(samplestandard_deviation)
 
 @staticmethod
 def population_proportion_variance(num):
