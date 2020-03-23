@@ -57,7 +57,7 @@ if __name__ == '__main__':
 
             choice = input("Enter Choice: ")
 
-if choice == "1":
+if choice == "2":
     print(calculate_median(l));
 
 if choice == "14"
