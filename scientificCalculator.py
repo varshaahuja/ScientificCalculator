@@ -1,11 +1,34 @@
 class scientificCalculator:
 
-    #Population Mean
-    @staticmethod
-    def populationMean(num1, num2):
-        return 1;
+@staticmethod
+def calculate_median(l):
+    l = sorted(l)
+    l_len = len(l)
+    if l_len < 1:
+        return None
+    if l_len % 2 == 0:
+        return (l[(l_len - 1) // 2] + l[(l_len + 1) // 2]) // 2.0
+    else:
+        return l[(l_len - 1) // 2]
 
+@staticmethod
+def stdev(df):
+  mean = sum(df) / len(df)
+  sample_variance = sum((x - mean) ** 2 for x in df) / (len(df) - 1)
 
+  samplestandard_deviation = sample_variance ** (0.5)
+  return round(standard_deviation)
+
+@staticmethod
+def population_proportion_variance(num):
+    for p in num:
+      prop = p / sum(num)
+
+    x = (prop * (1 - prop) / sum(num))
+
+    variance_of_pop_prop = x ** (0.5)
+
+    return variance_of_pop_prop
 
 
 
@@ -33,3 +56,12 @@ if __name__ == '__main__':
             print("16. Quit")
 
             choice = input("Enter Choice: ")
+
+if choice == "1":
+    print(calculate_median(l));
+
+if choice == "14"
+    print("The sample standard deviation of List is", stdev(df));
+
+if choice == "5"
+    print("The Variance of population proportion of list is", population_proportion_variance(num);
