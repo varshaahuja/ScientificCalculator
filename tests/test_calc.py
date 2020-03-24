@@ -3,10 +3,12 @@ from simpleCalculator import simpleCalculator as calculator
 import pytest
 import unittest
 import csv
+from scientificCalculator import scientificCalculator as scientificCalculator
 
 
 
 class test_PythonSimpleCalc(unittest.TestCase):
+
     def test_calc(self):
         assert calculator
 
@@ -102,3 +104,60 @@ class test_PythonSimpleCalc(unittest.TestCase):
             while (i != len(num1)):
                 assert round(calculator.squareRoot(float(num1[i])),8) == round(float(res[i]),8)
                 i = i + 1;
+
+
+    def test_calc_populationMean(self):
+
+        input = csv.reader(open("populationMean.csv"))
+        next(input)
+
+        for row in input:
+            list_of_floats = []
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.populationMean((list_of_floats))) == float(row[10])
+
+
+    def test_calc_populationStandardDeviation(self):
+
+        input = csv.reader(open("populationStandardDeviation.csv"))
+        next(input)
+
+        for row in input:
+            list_of_floats = []
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.populationStandardDeviation((list_of_floats))) == float(row[10])
+
+
+    def test_calc_standardizedScore(self):
+
+        input = csv.reader(open("standardizedScore.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert  float(scientificCalculator.standardizedScore((list_of_floats), int(row[11]))) == float(row[10])
+
+
+    def test_calc_populationVariance(self):
+
+        input = csv.reader(open("populationVariance.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.populationVariance((list_of_floats))) == float(row[10])
+
+
+    def test_calc_samplmean(self):
+
+        input = csv.reader(open("sampleMean.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.sampleMean(list_of_floats, int(row[11])))== float(row[10])

@@ -1,68 +1,50 @@
+import csv
 class scientificCalculator:
 
-@staticmethod
-def calculate_median(l):
-    l = sorted(l)
-    l_len = len(l)
-    if l_len < 1:
-        return None
-    if l_len % 2 == 0:
-        return (l[(l_len - 1) // 2] + l[(l_len + 1) // 2]) // 2.0
-    else:
-        return l[(l_len - 1) // 2]
+    #Population Mean
+    @staticmethod
+    def populationMean(data):
+        n= len(data)
+        sum=0
+        for i in range(0,n): sum= sum +data[i]
+        return sum/n ;
 
-@staticmethod
-def stdev(df):
-  mean = sum(df) / len(df)
-  sample_variance = sum((x - mean) ** 2 for x in df) / (len(df) - 1)
+    #Population Standard Deviation
+    @staticmethod
+    def populationStandardDeviation(data):
+        n= len(data);
+        dev=0
+        mean = scientificCalculator.populationMean(data);
+        for i in range(0, n):
+            dev= dev+ (data[i]-mean)**(2)
+        stdev = (dev/n)**(1/2)
+        return stdev
 
-  samplestandard_deviation = sample_variance ** (0.5)
-  return round(standard_deviation)
+    @staticmethod
+    def populationVariance(data):
+        stdev = scientificCalculator.populationStandardDeviation(data)
+        variance = (stdev)**(2)
+        return (variance)
 
-@staticmethod
-def population_proportion_variance(num):
-    for p in num:
-      prop = p / sum(num)
+    @staticmethod
+    def standardizedScore(data, i):
+        stdev = scientificCalculator.populationStandardDeviation(data);
+        mean = scientificCalculator.populationMean(data)
+        standardizedScore = (data[i]-mean)/stdev
+        return standardizedScore
 
-    x = (prop * (1 - prop) / sum(num))
-
-    variance_of_pop_prop = x ** (0.5)
-
-    return variance_of_pop_prop
-
-@staticmethod
-def correlationCoefficient(X, Y, n):
-  sum_X = 0
-  sum_Y = 0
-  sum_XY = 0
-  squareSum_X = 0
-  squareSum_Y = 0
-
-  i = 0
-  while i < n:
-    sum_X = sum_X + X[i]
-
-    sum_Y = sum_Y + Y[i]
-
-    sum_XY = sum_XY + X[i] * Y[i]
-
-    squareSum_X = squareSum_X + X[i] * X[i]
-    squareSum_Y = squareSum_Y + Y[i] * Y[i]
-
-    i = i + 1
-
-  # use formula for calculating correlation
-  # coefficient.
-  corr = (n * sum_XY - sum_X * sum_Y) / (math.sqrt((n * squareSum_X - sum_X * sum_X) * (n * squareSum_Y - sum_Y * sum_Y)))
-
-  return corr
-
+    @staticmethod
+    def sampleMean(data,m):
+        sum=0
+        for i in range(0,m): sum= sum +data[i]
+        return float(sum/m);
 
 
 if __name__ == '__main__':
         choice = ""
 
-        while choice != "7":
+        data = [44.5323907,41.79590304,36.87676452,55.70213388,45.67683062,53.138382,56.75595402,39.98807769,54.42831833,48.55590431]
+        while choice != "16":
             print("Select the operation:")
             print("1. Population Mean")
             print("2. Median")
@@ -83,15 +65,16 @@ if __name__ == '__main__':
 
             choice = input("Enter Choice: ")
 
-if choice == "1":
-    print(calculate_median(l));
+            if choice == "1":
+                print( scientificCalculator.populationMean(data));
+            elif choice == "4":
+                print(scientificCalculator.populationStandardDeviation(data));
 
-if choice == "14"
-    print("The sample standard deviation of List is", stdev(df));
+            elif choice == "7":
+                print(scientificCalculator.standardizedScore(data,4));
 
-if choice == "5"
-    print("The Variance of population proportion of list is", population_proportion_variance(num);
+            elif choice == "10":
+                print(scientificCalculator.populationVariance(data));
 
-if choice == "8"
-    print("The Population Correlation Coefficient is", correlationCoefficient(X, Y, n);
-
+            elif choice == "13":
+                print(scientificCalculator.sampleMean(data,6));
