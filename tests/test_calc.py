@@ -110,18 +110,21 @@ class test_PythonSimpleCalc(unittest.TestCase):
 
         input = csv.reader(open("populationMean.csv"))
         next(input)
-        list_of_floats = []
+
         for row in input:
+            list_of_floats = []
             for item in row[0:10]:
                 list_of_floats.append(float(item))
-            assert  float(scientificCalculator.populationMean((list_of_floats))) == float(row[10])
+            assert float(scientificCalculator.populationMean((list_of_floats))) == float(row[10])
+
 
     def test_calc_populationStandardDeviation(self):
 
         input = csv.reader(open("populationStandardDeviation.csv"))
         next(input)
-        list_of_floats = []
+
         for row in input:
+            list_of_floats = []
             for item in row[0:10]:
                 list_of_floats.append(float(item))
             assert float(scientificCalculator.populationStandardDeviation((list_of_floats))) == float(row[10])
@@ -131,8 +134,8 @@ class test_PythonSimpleCalc(unittest.TestCase):
 
         input = csv.reader(open("standardizedScore.csv"))
         next(input)
-        list_of_floats = []
         for row in input:
+            list_of_floats = []
             for item in row[0:10]:
                 list_of_floats.append(float(item))
             assert  float(scientificCalculator.standardizedScore((list_of_floats), int(row[11]))) == float(row[10])
@@ -142,8 +145,8 @@ class test_PythonSimpleCalc(unittest.TestCase):
 
         input = csv.reader(open("populationVariance.csv"))
         next(input)
-        list_of_floats = []
         for row in input:
+            list_of_floats = []
             for item in row[0:10]:
                 list_of_floats.append(float(item))
             assert float(scientificCalculator.populationVariance((list_of_floats))) == float(row[10])
@@ -153,8 +156,8 @@ class test_PythonSimpleCalc(unittest.TestCase):
 
         input = csv.reader(open("sampleMean.csv"))
         next(input)
-        list_of_floats = []
         for row in input:
+            list_of_floats = []
             for item in row[0:10]:
                 list_of_floats.append(float(item))
             assert float(scientificCalculator.sampleMean(list_of_floats, int(row[11])))== float(row[10])

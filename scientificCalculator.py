@@ -7,13 +7,6 @@ class scientificCalculator:
         n= len(data)
         sum=0
         for i in range(0,n): sum= sum +data[i]
-
-
-        input = csv.reader(open("populationMean.csv"))
-        next(input)
-        for row in input:
-            print(row[0:10])
-
         return sum/n ;
 
     #Population Standard Deviation
@@ -50,7 +43,7 @@ class scientificCalculator:
 if __name__ == '__main__':
         choice = ""
 
-        data = [61.30144938,47.60287892,49.68059683,46.78598215,31.56768015,55.43093392,52.31036665,65.32512215,42.86435468,59.75510375]
+        data = [44.5323907,41.79590304,36.87676452,55.70213388,45.67683062,53.138382,56.75595402,39.98807769,54.42831833,48.55590431]
         while choice != "16":
             print("Select the operation:")
             print("1. Population Mean")
