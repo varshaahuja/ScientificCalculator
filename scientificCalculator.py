@@ -55,6 +55,24 @@ class scientificCalculator:
         variance = (stdev) ** (2)
         return (variance)
 
+    # confidence interval
+    @staticmethod
+    def confidence_interval(data, i):
+        try:
+            x = round(scientificCalculator.populationMean(data), 1)
+            sd = round(scientificCalculator.populationStandardDeviation(data), 1)
+            n = round(len(data), 1)
+            z_table = {'99.9%': 3.291, '99.5%': 2.807, '99%': 2.576, '95%': 1.96, '90%': 1.645, '85%': 1.44,
+                       '80%': 1.282, '75%': 1.02}
+            for confidence, z in z_table.items():
+                if z == z_table[i]:
+                    v = round(z * (sd / math.sqrt(n)), 2)
+                    ci = round(x + v, 2)
+                    ci1 = round(x - v, 2)
+            return (x, v, ci, ci1)
+        except:
+            print("update data dictionary with", i)
+
     @staticmethod
     def standardizedScore(data, i):
         stdev = scientificCalculator.populationStandardDeviation(data);
