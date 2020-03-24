@@ -38,6 +38,17 @@ class scientificCalculator:
         stdev = (dev / n) ** (1 / 2)
         return stdev
 
+    # z-score
+    @staticmethod
+    def zscore(num, i):
+        try:
+            m = scientificCalculator.populationMean(num)
+            sd = scientificCalculator.populationStandardDeviation(num)
+            zscr = (num[i] - m) / sd
+            return round(zscr, 4)
+        except:
+            print("invalid input")
+
     @staticmethod
     def populationVariance(data):
         stdev = scientificCalculator.populationStandardDeviation(data)
