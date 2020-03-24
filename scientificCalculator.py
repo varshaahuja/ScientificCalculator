@@ -96,6 +96,13 @@ class scientificCalculator:
         for i in range(0, m): sum = sum + data[i]
         return float(sum / m);
 
+    # sample variance of data
+    @staticmethod
+    def var(df):
+        mean = sum(df) / len(df)
+        sample_variance = sum((x - mean) ** 2 for x in df) / (len(df) - 1)
+        return round(sample_variance, 3)
+
 
 if __name__ == '__main__':
     choice = ""
