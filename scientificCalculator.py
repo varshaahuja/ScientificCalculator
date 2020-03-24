@@ -80,6 +80,16 @@ class scientificCalculator:
         standardizedScore = (data[i] - mean) / stdev
         return standardizedScore
 
+    # proportion
+    @staticmethod
+    def proportion(num):
+        try:
+            prop = num[i] / sum(num)
+            print(num[i], prop)
+            return (round(prop, 4))
+        except:
+            print("invalid value of", i)
+
     @staticmethod
     def sampleMean(data, m):
         sum = 0
