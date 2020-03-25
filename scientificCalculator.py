@@ -6,16 +6,10 @@ class scientificCalculator:
     # Population Mean
     @staticmethod
     def populationMean(data):
-        n = len(data)
-        sum = 0
-        for i in range(0, n): sum = sum + data[i]
-
-        input = csv.reader(open("populationMean.csv"))
-        next(input)
-        for row in input:
-            print(row[0:10])
-
-        return sum / n;
+        n= len(data)
+        sum=0
+        for i in range(0,n): sum= sum +data[i]
+        return sum/n ;
 
     # mode
     @staticmethod
@@ -106,6 +100,7 @@ class scientificCalculator:
 
 
 if __name__ == '__main__':
+
     choice = ""
 
     data = [61.30144938, 47.60287892, 49.68059683, 46.78598215, 31.56768015, 55.43093392, 52.31036665, 65.32512215,
@@ -138,7 +133,7 @@ if __name__ == '__main__':
          #   print(scientificCalculator.populationStandardDeviation(data));
 
         elif choice == "3":
-            print(scientificCalculator.mode(data, int));
+            print(scientificCalculator.mode(data, 2));
 
         elif choice == "4":
             print(scientificCalculator.populationStandardDeviation(data));
@@ -147,7 +142,7 @@ if __name__ == '__main__':
         #    print(scientificCalculator.populationVariance(data, 6));
 
         elif choice == "6":
-            print(scientificCalculator.zscore(data, int));
+            print(scientificCalculator.zscore(data, 6));
 
         elif choice == "7":
             print(scientificCalculator.standardizedScore(data, 4));
@@ -156,7 +151,7 @@ if __name__ == '__main__':
          #   print(scientificCalculator.correlationcoefficient(data));
 
         elif choice == "9":
-            print(scientificCalculator.confidence_interval(data, int));
+            print(scientificCalculator.confidence_interval(data, 5));
 
         elif choice == "10":
             print(scientificCalculator.populationVariance(data));
@@ -165,7 +160,7 @@ if __name__ == '__main__':
         #    print(scientificCalculator.pvalue(data, 4));
 
         elif choice == "12":
-            print(scientificCalculator.proportion(data, int));
+            print(scientificCalculator.proportion(data, 4));
 
         elif choice == "13":
             print(scientificCalculator.sampleMean(data, 6));
