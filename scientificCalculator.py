@@ -133,14 +133,48 @@ if __name__ == '__main__':
 
         if choice == "1":
             print(scientificCalculator.populationMean(data));
+
+        #elif choice == "2":
+         #   print(scientificCalculator.populationStandardDeviation(data));
+
+        elif choice == "3":
+            print(scientificCalculator.mode(data, int));
+
         elif choice == "4":
             print(scientificCalculator.populationStandardDeviation(data));
+
+       # elif choice == "5":
+        #    print(scientificCalculator.populationVariance(data, 6));
+
+        elif choice == "6":
+            print(scientificCalculator.zscore(data, int));
 
         elif choice == "7":
             print(scientificCalculator.standardizedScore(data, 4));
 
+        #elif choice == "8":
+         #   print(scientificCalculator.correlationcoefficient(data));
+
+        elif choice == "9":
+            print(scientificCalculator.confidence_interval(data, int));
+
         elif choice == "10":
             print(scientificCalculator.populationVariance(data));
 
+       # elif choice == "11":
+        #    print(scientificCalculator.pvalue(data, 4));
+
+        elif choice == "12":
+            print(scientificCalculator.proportion(data, int));
+
         elif choice == "13":
             print(scientificCalculator.sampleMean(data, 6));
+
+        #elif choice == "14":
+            #print(scientificCalculator.samplestandarddeviation(data));
+
+        elif choice == "15":
+            print(scientificCalculator.var(data));
+
+        elif choice == "16":
+            break;
