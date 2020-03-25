@@ -106,38 +106,36 @@ class test_PythonSimpleCalc(unittest.TestCase):
 
         input = csv.reader(open("populationMean.csv"))
         next(input)
-        list_of_floats = []
         for row in input:
+            list_of_floats = []
             for item in row[0:10]:
                 list_of_floats.append(float(item))
             assert float(scientificCalculator.populationMean((list_of_floats))) == float(row[10])
 
     def test_calc_populationStandardDeviation(self):
-
         input = csv.reader(open("populationStandardDeviation.csv"))
         next(input)
-        list_of_floats = []
         for row in input:
+            list_of_floats = []
             for item in row[0:10]:
                 list_of_floats.append(float(item))
             assert float(scientificCalculator.populationStandardDeviation((list_of_floats))) == float(row[10])
 
     def test_calc_standardizedScore(self):
-
         input = csv.reader(open("standardizedScore.csv"))
         next(input)
-        list_of_floats = []
         for row in input:
+            list_of_floats = []
             for item in row[0:10]:
                 list_of_floats.append(float(item))
-            assert float(scientificCalculator.standardizedScore((list_of_floats), int(row[11]))) == float(row[10])
+            assert  float(scientificCalculator.standardizedScore((list_of_floats), int(row[11]))) == float(row[10])
 
     def test_calc_populationVariance(self):
 
         input = csv.reader(open("populationVariance.csv"))
         next(input)
-        list_of_floats = []
         for row in input:
+            list_of_floats = []
             for item in row[0:10]:
                 list_of_floats.append(float(item))
             assert float(scientificCalculator.populationVariance((list_of_floats))) == float(row[10])
@@ -146,8 +144,8 @@ class test_PythonSimpleCalc(unittest.TestCase):
 
         input = csv.reader(open("sampleMean.csv"))
         next(input)
-        list_of_floats = []
         for row in input:
+            list_of_floats = []
             for item in row[0:10]:
                 list_of_floats.append(float(item))
             assert float(scientificCalculator.sampleMean(list_of_floats, int(row[11]))) == float(row[10])
@@ -155,44 +153,56 @@ class test_PythonSimpleCalc(unittest.TestCase):
     def test_calc_ZScore(self):
         input = csv.reader(open("Unit_Test_ZScore.csv"))
         next(input)
-        list_of_floats = []
         for row in input:
+            list_of_floats = []
             for item in row[0:10]:
                 list_of_floats.append(float(item))
-            assert float(scientificCalculator.zscore((list_of_floats), int(row[11]))) == float(row[10])
-
-    def test_calc_Mode(self):
-        input = csv.reader(open("Unit_Test_Mode.csv"))
-        next(input)
-        list_of_floats = []
-        for row in input:
-            for item in row[0:10]:
-                list_of_floats.append(float(item))
-            assert float(scientificCalculator.mode(list_of_floats)) == float(row[10])
-
-    def test_calc_Var(self):
-        input = csv.reader(open("Unit_Test_Var.csv"))
-        next(input)
-        list_of_floats = []
-        for row in input:
-            for item in row[0:10]:
-                list_of_floats.append(float(item))
-            assert float(scientificCalculator.var(list_of_floats)) == float(row[10])
-
-    def test_calc_CI(self):
-        input = csv.reader(open("Unit_Test_CI.csv"))
-        next(input)
-        list_of_floats = []
-        for row in input:
-            for item in row[0:10]:
-                list_of_floats.append(float(item))
-            assert float(scientificCalculator.confidence_interval((list_of_floats), int(row[11]))) == float(row[10])
+            assert  float((scientificCalculator.zscore((list_of_floats), int(row[11]))) == float(row[10]))
 
     def test_calc_Proportion(self):
         input = csv.reader(open("Unit_Test_Proportion.csv"))
         next(input)
-        list_of_floats = []
         for row in input:
+            list_of_floats = []
             for item in row[0:10]:
                 list_of_floats.append(float(item))
-            assert float(scientificCalculator.proportion((list_of_floats), int(row[11]))) == float(row[10])
+            assert  float((scientificCalculator.zscore((list_of_floats), int(row[11]))) == float(row[10]))
+
+    def test_calc_Mode(self):
+        input = csv.reader(open("Unit_Test_Mode.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert scientificCalculator.mode(list_of_floats) == float(row[10])
+
+    def test_calc_Var(self):
+        input = csv.reader(open("Unit_Test_Var.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert scientificCalculator.var(list_of_floats) == float(row[10])
+
+    def test_calc_CI(self):
+        input = csv.reader(open("Unit_Test_CI.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            output_floats = []
+            for item2 in row[10:14]:
+                output_floats.append(float(item2))
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert scientificCalculator.confidence_interval((list_of_floats), float(row[14])) == output_floats
+
+    def test_calc_samplmean(self):
+        input = csv.reader(open("sampleMean.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.sampleMean(list_of_floats, int(row[11]))) == float(row[10])

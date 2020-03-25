@@ -1,5 +1,5 @@
 import csv
-
+import math
 
 class scientificCalculator:
 
@@ -62,14 +62,15 @@ class scientificCalculator:
             x = round(scientificCalculator.populationMean(data), 1)
             sd = round(scientificCalculator.populationStandardDeviation(data), 1)
             n = round(len(data), 1)
-            z_table = {'99.9%': 3.291, '99.5%': 2.807, '99%': 2.576, '95%': 1.96, '90%': 1.645, '85%': 1.44,
-                       '80%': 1.282, '75%': 1.02}
+            print(data)
+            z_table = {99.9: 3.291, 99.5: 2.807, 99: 2.576, 95: 1.96, 90: 1.645, 85: 1.44,
+                       80: 1.282, 75: 1.02}
             for confidence, z in z_table.items():
                 if z == z_table[i]:
                     v = round(z * (sd / math.sqrt(n)), 2)
                     ci = round(x + v, 2)
                     ci1 = round(x - v, 2)
-            return (x, v, ci, ci1)
+            return [x, v, ci, ci1]
         except:
             print("update data dictionary with", i)
 
@@ -82,7 +83,7 @@ class scientificCalculator:
 
     # proportion
     @staticmethod
-    def proportion(num):
+    def proportion(num, i):
         try:
             prop = num[i] / sum(num)
             print(num[i], prop)
@@ -101,7 +102,7 @@ class scientificCalculator:
     def var(df):
         mean = sum(df) / len(df)
         sample_variance = sum((x - mean) ** 2 for x in df) / (len(df) - 1)
-        return round(sample_variance, 3)
+        return round(sample_variance, 4)
 
 
 if __name__ == '__main__':
