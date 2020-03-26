@@ -194,7 +194,7 @@ class test_PythonSimpleCalc(unittest.TestCase):
                 output_floats.append(float(item2))
             for item in row[0:10]:
                 list_of_floats.append(float(item))
-            assert scientificCalculator.confidence_interval((list_of_floats), float(row[14])) == output_float
+            assert scientificCalculator.confidence_interval((list_of_floats), float(row[14])) == output_floats
 
     def test_calc_calculate_median(self):
         input = csv.reader(open("median.csv"))
