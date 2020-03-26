@@ -89,7 +89,7 @@ class scientificCalculator:
     def sampleMean(data, m):
         sum = 0
         for i in range(0, m): sum = sum + data[i]
-        return float(sum / m);
+        return float(sum / m)
 
     # sample variance of data
     @staticmethod
@@ -98,6 +98,55 @@ class scientificCalculator:
         sample_variance = sum((x - mean) ** 2 for x in df) / (len(df) - 1)
         return round(sample_variance, 4)
 
+    # Median
+    @staticmethod
+    def calculate_median(l):
+        l = sorted(l)
+        l_len = len(l)
+        if l_len < 1:
+            return None
+        if l_len % 2 == 0:
+            return (l[(l_len - 1) // 2] + l[(l_len + 1) // 2]) // 2.0
+        else:
+            return l[(l_len - 1) // 2]
+
+    # sample standard deviation
+    @staticmethod
+    def stdev(df):
+        mean = scientificCalculator.populationMean(df)
+        sample_variance = sum((x - mean) ** 2 for x in df) / (len(df) - 1)
+        samplestandard_deviation = sample_variance ** (0.5)
+        return round(samplestandard_deviation)
+
+    # population proportion variance
+    @staticmethod
+    def population_proportion_variance(num):
+        for p in num:
+            prop = p / sum(num)
+
+        x = (prop * (1 - prop) / sum(num))
+        variance_of_pop_prop = x ** (0.5)
+        return round(variance_of_pop_prop, 4)
+
+    # correlation coefficient
+    @staticmethod
+    def correlationCoefficient(X, Y, n):
+        sum_X = 0
+        sum_Y = 0
+        sum_XY = 0
+        squareSum_X = 0
+        squareSum_Y = 0
+        i = 0
+        while i < n:
+            sum_X = sum_X + X[i]
+            sum_Y = sum_Y + Y[i]
+            sum_XY = sum_XY + X[i] * Y[i]
+            squareSum_X = squareSum_X + X[i] * X[i]
+            squareSum_Y = squareSum_Y + Y[i] * Y[i]
+            i = i + 1
+            correlation = ((n * sum_XY - sum_X * sum_Y) / (
+                math.sqrt((n * squareSum_X - sum_X * sum_X) * (n * squareSum_Y - sum_Y * sum_Y))))
+            return correlation
 
 if __name__ == '__main__':
 
@@ -105,6 +154,10 @@ if __name__ == '__main__':
 
     data = [61.30144938, 47.60287892, 49.68059683, 46.78598215, 31.56768015, 55.43093392, 52.31036665, 65.32512215,
             42.86435468, 59.75510375]
+
+    data1 = [51.30144938, 37.60287892, 49.68059683, 26.78598215, 71.56768015, 55.43093392, 52.31036665, 65.32512215,
+            42.86435468, 29.75510375]
+
     while choice != "16":
         print("Select the operation:")
         print("1. Population Mean")
@@ -129,8 +182,8 @@ if __name__ == '__main__':
         if choice == "1":
             print(scientificCalculator.populationMean(data));
 
-        #elif choice == "2":
-         #   print(scientificCalculator.populationStandardDeviation(data));
+        elif choice == "2":
+            print(scientificCalculator.calculate_median(data));
 
         elif choice == "3":
             print(scientificCalculator.mode(data, 2));
@@ -138,8 +191,8 @@ if __name__ == '__main__':
         elif choice == "4":
             print(scientificCalculator.populationStandardDeviation(data));
 
-       # elif choice == "5":
-        #    print(scientificCalculator.populationVariance(data, 6));
+        elif choice == "5":
+            print(scientificCalculator.population_proportion_variance(data));
 
         elif choice == "6":
             print(scientificCalculator.zscore(data, 6));
@@ -147,8 +200,8 @@ if __name__ == '__main__':
         elif choice == "7":
             print(scientificCalculator.standardizedScore(data, 4));
 
-        #elif choice == "8":
-         #   print(scientificCalculator.correlationcoefficient(data));
+        elif choice == "8":
+            print(scientificCalculator.correlationCoefficient(data, data1, 4));
 
         elif choice == "9":
             print(scientificCalculator.confidence_interval(data, 5));
@@ -165,8 +218,8 @@ if __name__ == '__main__':
         elif choice == "13":
             print(scientificCalculator.sampleMean(data, 6));
 
-        #elif choice == "14":
-            #print(scientificCalculator.samplestandarddeviation(data));
+        elif choice == "14":
+            print(scientificCalculator.stdev(data));
 
         elif choice == "15":
             print(scientificCalculator.var(data));

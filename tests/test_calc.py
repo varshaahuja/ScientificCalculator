@@ -194,4 +194,87 @@ class test_PythonSimpleCalc(unittest.TestCase):
                 output_floats.append(float(item2))
             for item in row[0:10]:
                 list_of_floats.append(float(item))
-            assert scientificCalculator.confidence_interval((list_of_floats), float(row[14])) == output_floats
+            assert scientificCalculator.confidence_interval((list_of_floats), float(row[14])) == output_float
+
+    def test_calc_calculate_median(self):
+        input = csv.reader(open("median.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            for item in row[0:5]:
+                list_of_floats.append(float(item))
+            assert scientificCalculator.calculate_median(list_of_floats) == row[5]
+
+    def test_calc_stdev(self):
+        input = csv.reader(open("sampleStandardDeviation.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.sampleStandardDeviation((list_of_floats))) == float(row[10])
+
+    def test_calc_population_proportion_variance(self):
+        input = csv.reader(open("varianceOfPopulationProportion.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.population_proportion_variance((list_of_floats), int(row[11]))) == float(
+                row[10])
+
+    def test_calc_correlationCoefficient(self):
+        input = csv.reader(open("populationCoefficientCorrelation.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.correlationCoefficient((list_of_floats))) == float(row[10])
+
+    def test_calc_calculate_median(self):
+        input = csv.reader(open("median.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            print(list_of_floats)
+            for item in row[0:5]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.calculate_median(list_of_floats)) == float(row[5])
+
+    def test_calc_stdev(self):
+        input = csv.reader(open("sampleStandardDeviation.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            for item in row[0:5]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.stdev(list_of_floats)) == float(row[5])
+
+    def test_calc_population_proportion_variance(self):
+        input = csv.reader(open("varianceOfPopulationProportion.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            for item in row[0:5]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.population_proportion_variance(list_of_floats) == float(row[5]))
+
+    def test_calc_correlationCoefficient(self):
+        input = csv.reader(open("populationCoefficientCorrelation.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            list_of_floats1 = []
+            output_floats = []
+            for item in row[0:5]:
+                list_of_floats.append(float(item))
+            for item2 in row[5:10]:
+                list_of_floats1.append(float(item2))
+            for item3 in row[10:12]:
+                output_floats.append(float(item3))
+        assert float(scientificCalculator.correlationCoefficient(list_of_floats, list_of_floats1, output_floats[0])) == float(output_floats[1])
+
+
+
