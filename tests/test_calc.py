@@ -8,7 +8,7 @@ from scientificCalculator import scientificCalculator as scientificCalculator
 
 class test_PythonSimpleCalc(unittest.TestCase):
 
-def test_calc(self):
+ def test_calc(self):
         assert calculator
 
 def test_calc_add(self):
@@ -106,46 +106,44 @@ def test_calc_squareroot(self):
 
 
 def test_calc_calculate_median(self):
+    input = csv.reader(open("median.csv"))
+    next(input)
+    list_of_floats = []
+    for row in input:
+        for item in row[0:10]:
+            list_of_floats.append(float(item))
+        assert float(scientificCalculator.calculate_median((list_of_floats))) == float(row[10])
 
-        input = csv.reader(open("median.csv"))
-        next(input)
-        list_of_floats = []
-        for row in input:
-            for item in row[0:10]:
-                list_of_floats.append(float(item))
-            assert  float(scientificCalculator.calculate_median((list_of_floats))) == float(row[10])
 
 def test_calc_stdev(self):
-
-        input = csv.reader(open("sampleStandardDeviation.csv"))
-        next(input)
-        list_of_floats = []
-        for row in input:
-            for item in row[0:10]:
-                list_of_floats.append(float(item))
-            assert float(scientificCalculator.sampleStandardDeviation((list_of_floats))) == float(row[10])
+    input = csv.reader(open("sampleStandardDeviation.csv"))
+    next(input)
+    list_of_floats = []
+    for row in input:
+        for item in row[0:10]:
+            list_of_floats.append(float(item))
+        assert float(scientificCalculator.sampleStandardDeviation((list_of_floats))) == float(row[10])
 
 
 def test_calc_population_proportion_variance(self):
-
-        input = csv.reader(open("varianceOfPopulationProportion.csv"))
-        next(input)
-        list_of_floats = []
-        for row in input:
-            for item in row[0:10]:
-                list_of_floats.append(float(item))
-            assert  float(scientificCalculator.population_proportion_variance((list_of_floats), int(row[11]))) == float(row[10])
+    input = csv.reader(open("varianceOfPopulationProportion.csv"))
+    next(input)
+    list_of_floats = []
+    for row in input:
+        for item in row[0:10]:
+            list_of_floats.append(float(item))
+        assert float(scientificCalculator.population_proportion_variance((list_of_floats), int(row[11]))) == float(
+            row[10])
 
 
 def test_calc_correlationCoefficient(self):
-
-        input = csv.reader(open("populationCoefficientCorrelation.csv"))
-        next(input)
-        list_of_floats = []
-        for row in input:
-            for item in row[0:10]:
-                list_of_floats.append(float(item))
-            assert float(scientificCalculator.correlationCoefficient((list_of_floats))) == float(row[10])
+    input = csv.reader(open("populationCoefficientCorrelation.csv"))
+    next(input)
+    list_of_floats = []
+    for row in input:
+        for item in row[0:10]:
+            list_of_floats.append(float(item))
+        assert float(scientificCalculator.correlationCoefficient((list_of_floats))) == float(row[10])
 
 
 
