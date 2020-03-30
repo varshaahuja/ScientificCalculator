@@ -277,4 +277,12 @@ class test_PythonSimpleCalc(unittest.TestCase):
         assert float(scientificCalculator.correlationCoefficient(list_of_floats, list_of_floats1, output_floats[0])) == float(output_floats[1])
 
 
+    def test_calc_pValue(self):
+        input = csv.reader(open("testCases/pValue.csv"))
+        next(input)
+        for row in input:
+            list_of_floats = []
+            for item in row[0:10]:
+                list_of_floats.append(float(item))
+            assert float(scientificCalculator.pValue(list_of_floats, int(row[10]))) == float(row[11])
 

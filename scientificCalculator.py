@@ -1,5 +1,7 @@
 import csv
 import math
+from scipy.stats import ttest_1samp
+import numpy as np
 
 class scientificCalculator:
 
@@ -148,15 +150,20 @@ class scientificCalculator:
                 math.sqrt((n * squareSum_X - sum_X * sum_X) * (n * squareSum_Y - sum_Y * sum_Y))))
             return correlation
 
+    #P Value
+    @staticmethod
+    def pValue(data,i):
+        mean = scientificCalculator.populationMean(data);
+        tset, pVal = ttest_1samp(data, i)
+        return pVal;
+
+
 if __name__ == '__main__':
 
     choice = ""
 
     data = [61.30144938, 47.60287892, 49.68059683, 46.78598215, 31.56768015, 55.43093392, 52.31036665, 65.32512215,
             42.86435468, 59.75510375]
-
-    data1 = [51.30144938, 37.60287892, 49.68059683, 26.78598215, 71.56768015, 55.43093392, 52.31036665, 65.32512215,
-            42.86435468, 29.75510375]
 
     while choice != "16":
         print("Select the operation:")
@@ -209,8 +216,8 @@ if __name__ == '__main__':
         elif choice == "10":
             print(scientificCalculator.populationVariance(data));
 
-       # elif choice == "11":
-        #    print(scientificCalculator.pvalue(data, 4));
+        elif choice == "11":
+            print(scientificCalculator.pValue(data, 50));
 
         elif choice == "12":
             print(scientificCalculator.proportion(data, 4));
