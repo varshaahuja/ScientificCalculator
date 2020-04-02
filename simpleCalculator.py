@@ -62,28 +62,28 @@ if __name__ == '__main__':
         if choice == "1":
             firstNum = float(input("Enter first number"))
             secondNum = float(input("Enter Second Number"))
-            print(calculator.add(firstNum, secondNum))
+            print(simpleCalculator.add(firstNum, secondNum))
 
         elif choice == "2":
             firstNum = float(input("Enter first number"))
             secondNum = float(input("Enter Second Number"))
-            print(calculator.subtraction(firstNum, secondNum))
+            print(simpleCalculator.subtraction(firstNum, secondNum))
 
         elif choice == "3":
             firstNum = float(input("Enter first number"))
             secondNum = float(input("Enter Second Number"))
-            print(calculator.multiply(firstNum, secondNum))
+            print(simpleCalculator.multiply(firstNum, secondNum))
 
         elif choice == "4":
             firstNum = float(input("Enter first number"))
             secondNum = float(input("Enter Second Number"))
-            print(calculator.divide(firstNum, secondNum))
+            print(simpleCalculator.divide(firstNum, secondNum))
         elif choice == "5":
             firstNum = float(input("Enter first number"))
-            print(calculator.square(firstNum))
+            print(simpleCalculator.square(firstNum))
         elif choice == "6":
             firstNum = float(input("Enter first number"))
-            print(calculator.squareRoot(firstNum))
+            print(simpleCalculator.squareRoot(firstNum))
         elif choice == "7":
             break
 
