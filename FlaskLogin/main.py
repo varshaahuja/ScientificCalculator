@@ -14,3 +14,8 @@ def index():
 @login_required
 def profile():
     return render_template('profile.html', name=current_user.name)
+
+@main.route('/calculator')
+@login_required
+def calculator():
+    return render_template('calculator.html', name=current_user.name)
