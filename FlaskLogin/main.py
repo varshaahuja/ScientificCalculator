@@ -31,7 +31,8 @@ def calc_post():
     if(first[1]== '+'):
         res = calculatorfun.add(float(first[0]),float(first[2]))
         history= History(num1=float(first[0]),num2=float(first[2]),op=first[1],res=float(res))
-
+        db.session.add(history)
+        db.session.commit()
 
     elif (first[1] == '-'):
         res = calculatorfun.subtraction(float(first[0]), float(first[2]))
@@ -57,6 +58,5 @@ def calc_post():
     elif (first[1] == 'd'):
         res = calculatorfun.squareRoot(float(first[0]))
 
-    db.session.add(history)
-    db.session.commit()
+
     return ('1');
