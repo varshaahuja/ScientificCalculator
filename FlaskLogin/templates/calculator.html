@@ -11,70 +11,70 @@
 
                 <div class="card-header operator bg-primary text-uppercase" align="center"> Calculator</div>
                 <div class="card-body">
-                    <form name="calculator">
+                    <form name="calculator" method="POST" action="/calculator">
                         <div class="row">
                             <input type="text" name="ans" class="form-control" value="">
+                            <input type="text" name="res" class="form-control" value="" hidden>
                         </div>
 
                         <div class="row pt-3">
 
                             <input type="reset" value="C" class="col-6 border operator">
-                                                        <input type="button" value="1/xˆ2" class="col border operator"
-                                   onClick="document.calculator.ans.value='1/('+document.calculator.ans.value+'**(2))'">
+                            <input type="button" value="1/xˆ2" class="col border operator"
+                                   onClick="document.calculator.ans.value='1/('+document.calculator.ans.value+'**(2))';document.calculator.res.value+='za'  ">
                             <input type="button" value="%" class="col border operator"
-                                   onClick="document.calculator.ans.value+='/100'">
+                                   onClick="document.calculator.ans.value+='/100';document.calculator.res.value+='z%' ">
                         </div>
 
                         <div class="row">
 
                             <input type="button" value="√x" class="col border operator"
-                                   onClick="document.calculator.ans.value+='**(1/2)'">
+                                   onClick="document.calculator.ans.value+='**(1/2)';document.calculator.res.value+='zd'  ">
                             <input type="button" value="xˆ2" class="col border operator"
-                                   onClick="document.calculator.ans.value+='**2'">
+                                   onClick="document.calculator.ans.value+='**2';document.calculator.res.value+='zc' ">
                             <input type="button" value="1/√x" class="col border operator"
-                                   onClick="document.calculator.ans.value='1/('+document.calculator.ans.value+'**(1/2))'">
+                                   onClick="document.calculator.ans.value='1/('+document.calculator.ans.value+'**(1/2))';document.calculator.res.value+='zb'  ">
                             <input type="button" value="/" class="col border operator"
-                                   onClick="document.calculator.ans.value+='/'">
+                                   onClick="document.calculator.ans.value+='/';document.calculator.res.value+='z/z' ">
                         </div>
 
                         <div class="row">
                             <input type="button" value="7" class="col border operator"
-                                   onClick="document.calculator.ans.value+='7'">
+                                   onClick="document.calculator.ans.value+='7';document.calculator.res.value+='7' ">
                             <input type="button" value="8" class="col border operator"
-                                   onClick="document.calculator.ans.value+='8'">
+                                   onClick="document.calculator.ans.value+='8';document.calculator.res.value+='8' ">
                             <input type="button" value="9" class="col border operator"
-                                   onClick="document.calculator.ans.value+='9'">
+                                   onClick="document.calculator.ans.value+='9';document.calculator.res.value+='9' ">
                             <input type="button" value="*" class="col border operator"
-                                   onClick="document.calculator.ans.value+='*'">
+                                   onClick="document.calculator.ans.value+='*';document.calculator.res.value+='z*z' ">
                         </div>
 
                         <div class="row">
                             <input type="button" value="4" class="col border operator"
-                                   onClick="document.calculator.ans.value+='4'">
+                                   onClick="document.calculator.ans.value+='4';document.calculator.res.value+='4' ">
                             <input type="button" value="5" class="col border operator"
-                                   onClick="document.calculator.ans.value+='5'">
+                                   onClick="document.calculator.ans.value+='5';document.calculator.res.value+='5' ">
                             <input type="button" value="6" class="col border operator"
-                                   onClick="document.calculator.ans.value+='6'">
+                                   onClick="document.calculator.ans.value+='6';document.calculator.res.value+='6' ">
                             <input type="button" value="-" class="col border operator"
-                                   onClick="document.calculator.ans.value+='-'">
+                                   onClick="document.calculator.ans.value+='-';document.calculator.res.value+='z-z' ">
                         </div>
 
                         <div class="row">
                             <input type="button" value="1" class="col border operator"
-                                   onClick="document.calculator.ans.value+='1'">
+                                   onClick="document.calculator.ans.value+='1';document.calculator.res.value+='1' ">
                             <input type="button" value="2" class="col border operator"
-                                   onClick="document.calculator.ans.value+='2'">
+                                   onClick="document.calculator.ans.value+='2';document.calculator.res.value+='2' ">
                             <input type="button" value="3" class="col border operator"
-                                   onClick="document.calculator.ans.value+='3'">
+                                   onClick="document.calculator.ans.value+='3';document.calculator.res.value+='3' ">
                             <input type="button" value="+" class="col border operator"
-                                   onClick="document.calculator.ans.value+='+'">
+                                   onClick="document.calculator.ans.value+='+';document.calculator.res.value+='z+z' ">
                         </div>
 
                         <div class="row">
                             <button class="col-6 border operator"> 0</button>
                             <button class="col border operator"> .</button>
-                            <input type="button" value="=" class="col border operator"
-                                   onClick="document.calculator.ans.value=eval(document.calculator.ans.value)">
+                            <input type="submit" value="=" class="col border operator">
                         </div>
 
                     </form>
