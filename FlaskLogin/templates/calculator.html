@@ -72,8 +72,10 @@
                         </div>
 
                         <div class="row">
-                            <button class="col-6 border operator"> 0</button>
-                            <button class="col border operator"> .</button>
+                            <input type="button" value="0" class="col-6 border operator"
+                                   onClick="document.calculator.ans.value+='0';document.calculator.res.value+='0'">
+                            <input type="button" value="." class="col border operator"
+                            onClick="document.calculator.ans.value+='.';document.calculator.res.value+='.'">
                             <input type="submit" value="=" class="col border operator">
                         </div>
 
