@@ -26,37 +26,51 @@ def calculator():
 @main.route('/calculator', methods=['POST'])
 def calc_post():
     calc = request.form.get('res')
-    first = calc.split('z');
-    print(first)
+    first = calc.split('z')
+
     if(first[1]== '+'):
         res = calculatorfun.add(float(first[0]),float(first[2]))
         history= History(num1=float(first[0]),num2=float(first[2]),op=first[1],res=float(res))
-        db.session.add(history)
-        db.session.commit()
 
     elif (first[1] == '-'):
         res = calculatorfun.subtraction(float(first[0]), float(first[2]))
+        history= History(num1=float(first[0]),num2=float(first[2]),op=first[1],res=float(res))
+
 
     elif (first[1] == '/'):
         res = calculatorfun.divide(float(first[0]), float(first[2]))
+        history= History(num1=float(first[0]),num2=float(first[2]),op=first[1],res=float(res))
+
 
     elif (first[1] == '*'):
         res = calculatorfun.multiply(float(first[0]), float(first[2]))
+        history= History(num1=float(first[0]),num2=float(first[2]),op=first[1],res=float(res))
+
 
     elif (first[1] == '%'):
         res = float(float(first[0])/100)
+        history= History(num1=float(first[0]),op=first[1],res=float(res))
 
-    elif (first[1] == 'a'):
+
+    elif (first[1] == 'invSq'):
         res = float(1/calculatorfun.square(float(first[0])))
+        history= History(num1=float(first[0]),op=first[1],res=float(res))
 
-    elif (first[1] == 'b'):
+
+    elif (first[1] == 'invSqrt'):
         res = float(1/calculatorfun.squareRoot(float(first[0])))
+        history= History(num1=float(first[0]),op=first[1],res=float(res))
 
-    elif (first[1] == 'c'):
+
+    elif (first[1] == 'sq'):
         res = calculatorfun.square(float(first[0]))
+        history= History(num1=float(first[0]),op=first[1],res=float(res))
 
-    elif (first[1] == 'd'):
+
+    elif (first[1] == 'sqrt'):
         res = calculatorfun.squareRoot(float(first[0]))
+        history= History(num1=float(first[0]),op=first[1],res=float(res))
 
-
-    return ('1');
+    db.session.add(history)
+    db.session.commit()
+    return redirect(url_for('main.calculator'))
