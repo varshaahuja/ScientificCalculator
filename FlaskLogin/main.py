@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_required, current_user
 from simpleCalculator import simpleCalculator as calculatorfun
 from . import db
+from .models import History
+
 
 main = Blueprint('main', __name__)
 
@@ -22,12 +24,13 @@ def calculator():
     return render_template('calculator.html', name=current_user.name)
 
 @main.route('/calculator', methods=['POST'])
-def login_post():
-    email = request.form.get('res')
-    first = email.split('z');
+def calc_post():
+    calc = request.form.get('res')
+    first = calc.split('z');
     print(first)
     if(first[1]== '+'):
-       res = calculatorfun.add(float(first[0]),float(first[2]))
+        res = calculatorfun.add(float(first[0]),float(first[2]))
+        history= History(num1=float(first[0]),num2=float(first[2]),op=first[1],res=float(res))
 
 
     elif (first[1] == '-'):
@@ -54,5 +57,6 @@ def login_post():
     elif (first[1] == 'd'):
         res = calculatorfun.squareRoot(float(first[0]))
 
-    print(res)
+    db.session.add(history)
+    db.session.commit()
     return ('1');
