@@ -73,4 +73,4 @@ def calc_post():
 
     db.session.add(history)
     db.session.commit()
-    return redirect(url_for('main.calculator'))
+    return render_template('calculator.html', result=res)

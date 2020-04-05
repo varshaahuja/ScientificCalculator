@@ -13,13 +13,13 @@
                 <div class="card-body">
                     <form name="calculator" method="POST" action="/calculator">
                         <div class="row">
-                            <input type="text" name="ans" class="form-control" value="">
+                            <input type="text" name="ans" class="form-control" value={{result}}>
                             <input type="text" name="res" class="form-control" value="" hidden>
                         </div>
 
                         <div class="row pt-3">
 
-                            <input type="reset" value="C" class="col-6 border operator">
+                            <input type="button" value="C" onclick="document.calculator.ans.value=''" class="col-6 border operator">
                             <input type="button" value="1/xˆ2" class="col border operator"
                                    onClick="document.calculator.ans.value='1/('+document.calculator.ans.value+'**(2))';document.calculator.res.value+='zinvSq'  ">
                             <input type="button" value="%" class="col border operator"
