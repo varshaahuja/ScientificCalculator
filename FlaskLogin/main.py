@@ -29,7 +29,7 @@ def calculator():
 def calc_post():
     calc = request.form.get('res')
     first = calc.split('z')
-
+    print(first)
     if (first[1] == '+'):
         res = calculatorfun.add(float(first[0]), float(first[2]))
         history = History(num1=float(first[0]), num2=float(first[2]), op=first[1], res=float(round(res, 5)),
