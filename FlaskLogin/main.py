@@ -75,7 +75,7 @@ def calc_post():
     db.session.add(history)
     db.session.commit()
 
-    all_data = History.query.all()
+    all_data = History.query.filter(History.email==current_user.email)
 
     return render_template('calculator.html', result=res, ALLhistory=all_data)
 
