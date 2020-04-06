@@ -21,7 +21,8 @@ def profile():
 @main.route('/calculator')
 @login_required
 def calculator():
-    return render_template('calculator.html', name=current_user.name)
+    all_data = History.query.filter(History.email == current_user.email)
+    return render_template('calculator.html', name=current_user.name, ALLhistory = all_data)
 
 @main.route('/calculator', methods=['POST'])
 def calc_post():
@@ -79,23 +80,15 @@ def calc_post():
 
     return render_template('calculator.html', result=res, ALLhistory=all_data)
 
-"""@main.route('/calculator', methods=['GET'])
-def calc_get():
-    if (User.email==current_user.email):
-        all_data = History.query.get.all()
-    else:
-        print("no record")
-    return render_template('calculator.html', history=all_data)"""
-
-
-@main.route('/delete/<id>/', methods=['GET', 'POST'])
+@main.route('/delete/<int:id>')
 def delete(id):
-    my_data = History.query.get(id)
-    db.session.delete(my_data)
+    all_data = History.query.get(id)
+    db.session.delete(all_data)
     db.session.commit()
-    flash("Row Deleted Successfully")
 
-    return render_template('calculator.html')
+    all_data = History.query.filter(History.email == current_user.email)
+
+    return render_template('calculator.html', ALLhistory=all_data)
 
 
 
