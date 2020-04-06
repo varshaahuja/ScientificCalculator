@@ -90,5 +90,12 @@ def delete(id):
 
     return render_template('calculator.html', ALLhistory=all_data)
 
+@main.route('/clear')
+def clearHistory():
+    all_data = History.query.filter(History.email == current_user.email)
 
+    db.session.delete(all_data)
+    db.session.commit()
 
+    all_data = History.query.filter(History.email == current_user.email)
+    return render_template('calculator.html', ALLhistory=all_data)
