@@ -21,7 +21,7 @@
 
                             <input type="button" value="C" onclick="document.calculator.ans.value=''" class="col-6 border operator">
                             <input type="button" value="1/xˆ2" class="col border operator"
-                                   onClick="document.calculator.ans.value='1/('+document.calculator.ans.value+'**(2))';document.calculator.res.value+='zinvSq'  ">
+                                   onClick="document.calculator.ans.value='1/('+document.calculator.ans.value+'**(2))';document.calculator.res.value+='zinvSq'">
                             <input type="button" value="%" class="col border operator"
                                    onClick="document.calculator.ans.value+='/100';document.calculator.res.value+='z%' ">
                         </div>
@@ -90,7 +90,38 @@
 
                 <div class="card-header"><span class="pr-5 operator">History</span> <span class="pl-5 operator"> Clear History </span>
                 </div>
-                <div class="card-body">
+
+                <div class="card-body" >
+                    <ul class="list-group">
+                        {% for row in ALLhistory %}
+
+                                {% if row.num2 == null or row.num2 == None %}
+                                    <li class="list-group-item"><span class="float-left">{{row.num1}} {{row.op}} {{row.res}}</span>
+                                        <a href = "" class ="btn btn-danger btn-xs float-right" onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
+                                    </li>
+                                {% else %}
+                                    <li class="list-group-item"><span class="float-left">{{row.num1}} {{row.op}} {{row.num2}} = {{row.res}}</span>
+                                        <a href = "" class ="btn btn-danger btn-xs float-right" onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
+                                    </li>
+                                {% endif %}
+
+
+
+                        {% endfor %}
+                      <!---  <td> test1</td>
+                        <td><a href = "" class ="btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</a></td>
+
+                        {% for row in History%}
+                        <tr>
+                            <td>{{row.num1}}</td>
+                            <td>
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        --->
+
+                    </ul>
 
                 </div>
 
@@ -102,6 +133,4 @@
 
 
 </div>
-
-
 {% endblock %}

@@ -28,51 +28,74 @@ def calc_post():
     calc = request.form.get('res')
     first = calc.split('z')
 
-
     if(first[1]== '+'):
-        res = calculatorfun.add(float(first[0]),float(first[2]))
-        history= History(num1=float(first[0]), num2=float(first[2]), op=first[1], res=float(res), email=current_user.email)
+        res = calculatorfun.add(float(first[0]), float(first[2]))
+        history = History(num1=float(first[0]), num2=float(first[2]), op=first[1], res=float(round(res, 5)), email=current_user.email)
 
 
     elif (first[1] == '-'):
         res = calculatorfun.subtraction(float(first[0]), float(first[2]))
-        history= History(num1=float(first[0]),num2=float(first[2]),op=first[1],res=float(res), email=current_user.email)
+        history = History(num1=float(first[0]), num2=float(first[2]), op=first[1], res=float(round(res, 5)), email=current_user.email)
 
 
     elif (first[1] == '/'):
         res = calculatorfun.divide(float(first[0]), float(first[2]))
-        history= History(num1=float(first[0]),num2=float(first[2]),op=first[1],res=float(res), email=current_user.email)
+        history = History(num1=float(first[0]), num2=float(first[2]), op=first[1], res=float(round(res, 5)), email=current_user.email)
 
 
     elif (first[1] == '*'):
         res = calculatorfun.multiply(float(first[0]), float(first[2]))
-        history= History(num1=float(first[0]),num2=float(first[2]),op=first[1],res=float(res), email=current_user.email)
+        history = History(num1=float(first[0]), num2=float(first[2]), op=first[1], res=float(round(res, 5)), email=current_user.email)
 
 
     elif (first[1] == '%'):
         res = float(float(first[0])/100)
-        history= History(num1=float(first[0]),op=first[1],res=float(res), email=current_user.email)
+        history = History(num1=float(first[0]), op=first[1], res=float(round(res, 5)), email=current_user.email)
 
 
     elif (first[1] == 'invSq'):
         res = float(1/calculatorfun.square(float(first[0])))
-        history= History(num1=float(first[0]),op=first[1],res=float(res), email=current_user.email)
+        history = History(num1=float(first[0]), op=first[1], res=float(round(res, 5)), email=current_user.email)
 
 
     elif (first[1] == 'invSqrt'):
         res = float(1/calculatorfun.squareRoot(float(first[0])))
-        history= History(num1=float(first[0]),op=first[1],res=float(res), email=current_user.email)
+        history = History(num1=float(first[0]), op=first[1], res=float(round(res, 5)), email=current_user.email)
 
 
     elif (first[1] == 'sq'):
         res = calculatorfun.square(float(first[0]))
-        history= History(num1=float(first[0]),op=first[1],res=float(res), email=current_user.email)
+        history = History(num1=float(first[0]), op=first[1], res=float(round(res, 5)), email=current_user.email)
 
 
     elif (first[1] == 'sqrt'):
         res = calculatorfun.squareRoot(float(first[0]))
-        history= History(num1=float(first[0]),op=first[1],res=float(res), email=current_user.email)
+        history = History(num1=float(first[0]), op=first[1], res=float(round(res, 5)), email=current_user.email)
 
     db.session.add(history)
     db.session.commit()
-    return render_template('calculator.html', result=res)
+
+    all_data = History.query.all()
+
+    return render_template('calculator.html', result=res, ALLhistory=all_data)
+
+"""@main.route('/calculator', methods=['GET'])
+def calc_get():
+    if (User.email==current_user.email):
+        all_data = History.query.get.all()
+    else:
+        print("no record")
+    return render_template('calculator.html', history=all_data)"""
+
+
+@main.route('/delete/<id>/', methods=['GET', 'POST'])
+def delete(id):
+    my_data = History.query.get(id)
+    db.session.delete(my_data)
+    db.session.commit()
+    flash("Row Deleted Successfully")
+
+    return render_template('calculator.html')
+
+
+
