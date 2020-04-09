@@ -29,7 +29,6 @@ def calculator():
 def calc_post():
     calc = request.form.get('res')
     first = calc.split('z')
-    print(first)
     if (first[1] == '+'):
         res = calculatorfun.add(float(first[0]), float(first[2]))
         history = History(num1=float(first[0]), num2=float(first[2]), op=first[1], res=float(round(res, 5)),
@@ -104,3 +103,11 @@ def clearHistory():
 
     all_data1 = History.query.filter(History.email == current_user.email)
     return render_template('calculator.html', ALLhistory=all_data1)
+
+@main.route('/clearEntry/<res>')
+def clearEntry(res):
+     s=''
+     res = res.split('z')[:-1]
+     s= s.join(res)
+     all_data = History.query.filter(History.email == current_user.email)
+     return render_template('calculator.html', result=s, ALLhistory=all_data)
