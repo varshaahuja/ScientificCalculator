@@ -8,9 +8,10 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
     name = db.Column(db.String(64))
 
-"""class History (db.model):
+class History(db.Model):
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
-    num1 = db.Column(db.Float(10))
-    num2 = db.Column(db.Float(10))
-    op = db.Column(db.NVARCHAR(2))
-    res = db.Column(db.Float(20))"""
+    num1 = db.Column(db.Float(100))
+    num2 = db.Column(db.Float(100))
+    op = db.Column(db.String(100))
+    res = db.Column(db.Float(100))
+    email=db.Column(db.String(100))

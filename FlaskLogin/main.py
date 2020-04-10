@@ -1,6 +1,8 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_required, current_user
+from simpleCalculator import simpleCalculator as calculatorfun
 from . import db
+from .models import History, User
 
 main = Blueprint('main', __name__)
 
@@ -15,7 +17,97 @@ def index():
 def profile():
     return render_template('profile.html', name=current_user.name)
 
+
 @main.route('/calculator')
 @login_required
 def calculator():
-    return render_template('calculator.html', name=current_user.name)
+    all_data = History.query.filter(History.email == current_user.email)
+    return render_template('calculator.html', name=current_user.name, ALLhistory=all_data)
+
+
+@main.route('/calculator', methods=['POST'])
+def calc_post():
+    calc = request.form.get('res')
+    first = calc.split('z')
+    if (first[1] == '+'):
+        res = calculatorfun.add(float(first[0]), float(first[2]))
+        history = History(num1=float(first[0]), num2=float(first[2]), op=first[1], res=float(round(res, 5)),
+                          email=current_user.email)
+
+
+    elif (first[1] == '-'):
+        res = calculatorfun.subtraction(float(first[0]), float(first[2]))
+        history = History(num1=float(first[0]), num2=float(first[2]), op=first[1], res=float(round(res, 5)),
+                          email=current_user.email)
+
+
+    elif (first[1] == '/'):
+        res = calculatorfun.divide(float(first[0]), float(first[2]))
+        history = History(num1=float(first[0]), num2=float(first[2]), op=first[1], res=float(round(res, 5)),
+                          email=current_user.email)
+
+
+    elif (first[1] == '*'):
+        res = calculatorfun.multiply(float(first[0]), float(first[2]))
+        history = History(num1=float(first[0]), num2=float(first[2]), op=first[1], res=float(round(res, 5)),
+                          email=current_user.email)
+
+
+    elif (first[1] == '%'):
+        res = float(float(first[0]) / 100)
+        history = History(num1=float(first[0]), op=first[1], res=float(round(res, 5)), email=current_user.email)
+
+
+    elif (first[1] == 'invSq'):
+        res = float(1 / calculatorfun.square(float(first[0])))
+        history = History(num1=float(first[0]), op=first[1], res=float(round(res, 5)), email=current_user.email)
+
+
+    elif (first[1] == 'invSqrt'):
+        res = float(1 / calculatorfun.squareRoot(float(first[0])))
+        history = History(num1=float(first[0]), op=first[1], res=float(round(res, 5)), email=current_user.email)
+
+
+    elif (first[1] == 'sq'):
+        res = calculatorfun.square(float(first[0]))
+        history = History(num1=float(first[0]), op=first[1], res=float(round(res, 5)), email=current_user.email)
+
+
+    elif (first[1] == 'sqrt'):
+        res = calculatorfun.squareRoot(float(first[0]))
+        history = History(num1=float(first[0]), op=first[1], res=float(round(res, 5)), email=current_user.email)
+
+    db.session.add(history)
+    db.session.commit()
+
+    all_data = History.query.filter(History.email == current_user.email)
+
+    return render_template('calculator.html', result=res, ALLhistory=all_data)
+
+
+@main.route('/delete/<int:id>')
+def delete(id):
+    all_data = History.query.get(id)
+    db.session.delete(all_data)
+    db.session.commit()
+
+    all_data = History.query.filter(History.email == current_user.email)
+
+    return render_template('calculator.html', ALLhistory=all_data)
+
+
+@main.route('/clear')
+def clearHistory():
+    all_data = History.query.filter(History.email == current_user.email).delete()
+    db.session.commit()
+
+    all_data1 = History.query.filter(History.email == current_user.email)
+    return render_template('calculator.html', ALLhistory=all_data1)
+
+@main.route('/clearEntry/<res>')
+def clearEntry(res):
+     s=''
+     res = res.split('z')[:-1]
+     s= s.join(res)
+     all_data = History.query.filter(History.email == current_user.email)
+     return render_template('calculator.html', result=s, ALLhistory=all_data)
